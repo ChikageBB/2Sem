@@ -88,8 +88,8 @@ public class ListExample implements List403 {
     @Override
     public void sort(boolean flag) {
         if (flag) {
-            for (int i = 0; i < size; i++) {
-                for (int j = i; j < size; j++) {
+            for (int i = 0; i < size - 1; i++) {
+                for (int j = i + 1; j < size; j++) {
                     if (arr[i] > arr[j]) {
                         Integer temp = arr[i];
                         arr[i] = arr[j];
@@ -98,9 +98,9 @@ public class ListExample implements List403 {
                 }
             }
         } else {
-            for (int i = 0; i < size; i++) {
-                for (int j = i; j < size; j++) {
-                    if (arr[i] < arr[j] && arr[i] != null && arr[j] != null) {
+            for (int i = 0; i < size - 1; i++) {
+                for (int j = i + 1; j < size; j++) {
+                    if (arr[i] < arr[j]) {
                         Integer temp = arr[i];
                         arr[i] = arr[j];
                         arr[j] = temp;
