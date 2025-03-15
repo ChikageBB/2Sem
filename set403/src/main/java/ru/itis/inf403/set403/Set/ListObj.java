@@ -21,5 +21,5 @@ public interface ListObj<T> {
      */
     //void sort(boolean flag);
 
-
+    boolean contains(T elem);
 }
