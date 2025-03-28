@@ -1,4 +1,4 @@
-package generics;
+package ru.itis.inf403.model.list;
 
 public interface ListObj<T> {
 

@@ -14,10 +14,14 @@ public class ListExample implements List403 {
 
     public ListExample(){
         arr = new Integer[CAPACITY];
+        this.size = 0;
     }
 
     public ListExample(Integer[] arr){
         this.arr = arr;
+        this.CAPACITY = (int)(arr.length * 1.5);
+        this.size = arr.length;
+
     }
     // [1, 2, 3, 4, 0 0 0 0] size = 4; capacity = 8;
     @Override

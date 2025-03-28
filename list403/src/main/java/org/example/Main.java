@@ -4,13 +4,9 @@ package org.example;
 public class Main{
     public static void main(String[] args) {
 
+        Integer[] arr = {5, 3, 2, 1, 4};
+        ListExample listExample = new ListExample(arr);
 
-        ListExample listExample = new ListExample();
-        listExample.add(1);
-        listExample.add(2);
-        listExample.add(3);
-        listExample.add(4);
-        listExample.add(5);
 
 
         System.out.println("------- ВЫВОД СПИСКА -------");

@@ -1,14 +1,10 @@
 package org.example;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class ListExample implements List403 {
+public class ListExample implements ListObj {
 
     private int CAPACITY = 15;
-    private Integer[] arr;
+    private Object[] arr;
     private int size;
 
 
@@ -25,7 +21,7 @@ public class ListExample implements List403 {
     }
     // [1, 2, 3, 4, 0 0 0 0] size = 4; capacity = 8;
     @Override
-    public Integer get(int position) throws IndexOutOfBoundsException {
+    public Object get(int position) throws IndexOutOfBoundsException {
 
         if (position > size - 1 || position < 0){
             throw new IndexOutOfBoundsException();
@@ -36,21 +32,21 @@ public class ListExample implements List403 {
 
 
     @Override
-    public Integer remove(int position) {
+    public Object remove(int position) {
         if (position > size - 1 || position < 0){
             throw new IndexOutOfBoundsException();
         }
 
-        Integer temp = arr[position];
+        Object temp = arr[position];
         arr[position] = null;
         return temp;
 
     }
 
     @Override
-    public void add(Integer element) {
+    public void add(Object element) {
 
-        if (CAPACITY == arr.length){
+        if (size == arr.length){
             grow();
         }
 
@@ -65,7 +61,7 @@ public class ListExample implements List403 {
 
 
     @Override
-    public void add(Integer element, int position) {
+    public void add(Object element, int position) {
         if (position > size - 1 || position < 0 ){
             throw new IndexOutOfBoundsException();
         }
@@ -82,45 +78,56 @@ public class ListExample implements List403 {
     }
 
     private void grow(){
-        Integer[] temp = new Integer[(int)(CAPACITY * 1.5)];
+        Object[] temp = new Object[(int)(CAPACITY * 1.5)];
         for (int i = 0; i < size; i++){
             temp[i] = arr[i];
         }
         arr = temp;
     }
 
-    @Override
-    public void sort(boolean flag) {
-        if (flag) {
-            for (int i = 0; i < size - 1; i++) {
-                for (int j = i + 1; j < size; j++) {
-                    if (arr[i] > arr[j]) {
-                        Integer temp = arr[i];
-                        arr[i] = arr[j];
-                        arr[j] = temp;
-                    }
-                }
-            }
-        } else {
-            for (int i = 0; i < size - 1; i++) {
-                for (int j = i + 1; j < size; j++) {
-                    if (arr[i] < arr[j]) {
-                        Integer temp = arr[i];
-                        arr[i] = arr[j];
-                        arr[j] = temp;
-                    }
-                }
-            }
-        }
-    }
+//    @Override
+//    public void sort(boolean flag) {
+//        if (flag) {
+//            for (int i = 0; i < size - 1; i++) {
+//                for (int j = i + 1; j < size; j++) {
+//                    if (arr[i] > arr[j]) {
+//                        Integer temp = arr[i];
+//                        arr[i] = arr[j];
+//                        arr[j] = temp;
+//                    }
+//                }
+//            }
+//        } else {
+//            for (int i = 0; i < size - 1; i++) {
+//                for (int j = i + 1; j < size; j++) {
+//                    if (arr[i] < arr[j]) {
+//                        Integer temp = arr[i];
+//                        arr[i] = arr[j];
+//                        arr[j] = temp;
+//                    }
+//                }
+//            }
+//        }
+//    }
 
+
+//    public void print(){
+//        System.out.print("[");
+//        for (int i = 0; i < size - 1; i++){
+//            System.out.print(arr[i] + ", ");
+//        }
+//        System.out.print(arr[size - 1]);
+//        System.out.println("]");
+//    }
 
     public void print(){
-        System.out.print("[");
-        for (int i = 0; i < size - 1; i++){
-            System.out.print(arr[i] + ", ");
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[ ");
+        for (int i = 0 ; i < size - 1; ++i){
+            stringBuilder.append(arr[i] + ", ");
         }
-        System.out.print(arr[size - 1]);
-        System.out.println("]");
+        stringBuilder.append(arr[size - 1] + " ]");
+
+        System.out.println(stringBuilder);
     }
 }

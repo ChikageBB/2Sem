@@ -1,26 +1,26 @@
 package org.example;
 
-public interface List403 {
+public interface ListObj {
 
 
-    void add(Integer element);
-    void add(Integer element, int position);
+    void add(Object element);
+    void add(Object element, int position);
 
     /**
      * Удаляет элемент из списка в позиции position и возвращает его
      * @return
      */
 
-Integer remove(int position) throws IndexOutOfBoundsException;
+    Object remove(int position) throws IndexOutOfBoundsException;
     Integer size();
-    Integer get(int position) throws IndexOutOfBoundsException;
+    Object get(int position) throws IndexOutOfBoundsException;
 
     /**
      *
      * сортирует структуру на месте
      *
      */
-    void sort(boolean flag);
+    //void sort(boolean flag);
 
 
 }

@@ -1,10 +1,8 @@
-package ru.itis.inf403.set403.Set;
-
-import java.util.*;
-
+package ru.itis.inf403.model.Set;
+import ru.itis.inf403.model.genericsList.*;
 
 public class SetExample<T>  implements ISet<T>{
-    private final int CAPACITY = 16;
+    private  int CAPACITY = 16;
     private ListExample<T>[] arr;
     private int size;
 
@@ -85,11 +83,18 @@ public class SetExample<T>  implements ISet<T>{
     }
 
     private void grow(){
-        ListExample<T>[] temp = new ListExample[(int)(CAPACITY * 1.5)];
+        CAPACITY = (int)(arr.length * 1.5);
+        ListExample<T>[] temp = new ListExample[CAPACITY];
+
+        for (int i = 0; i < CAPACITY; i++){
+            temp[i] = new ListExample<>();
+        }
+
         for (int i = 0; i < size; i++){
             temp[i] = arr[i];
         }
 
         arr = temp;
     }
+
 }

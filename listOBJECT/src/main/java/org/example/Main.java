@@ -6,7 +6,7 @@ public class Main{
 
         Integer[] arr = {5, 3, 2, 1, 4};
         ListExample listExample = new ListExample(arr);
-
+        listExample.add("Aigiz Pidor");
 
 
         System.out.println("------- ВЫВОД СПИСКА -------");
@@ -24,12 +24,12 @@ public class Main{
         System.out.println();
 
         System.out.println("------- СОРТИРОВКА СПИСКА ПО НЕВОЗРАСТАНИЮ -------");
-        listExample.sort(false);
+        //listExample.sort(false);
         listExample.print();
         System.out.println();
 
         System.out.println("------- СОРТИРОВКА СПИСКА ПО НЕУБЫВАНИЮ -------");
-        listExample.sort(true);
+        //listExample.sort(true);
         listExample.print();
 
     }

@@ -1,4 +1,4 @@
-package ru.itis.inf403.set403.Set;
+package generics;
 
 
 public class ListExample<T> implements ListObj<T> {
@@ -8,7 +8,12 @@ public class ListExample<T> implements ListObj<T> {
     private int size;
 
 
-    public  ListExample(){
+    public ListExample(){
+        arr = new Object[CAPACITY];
+        this.size = 0;
+    }
+
+    public ListExample(int CAPACITY){
         arr = new Object[CAPACITY];
         this.size = 0;
     }

@@ -1,7 +1,4 @@
-package linkedGenerics;
-
-import java.util.Set;
-import java.util.TreeSet;
+package ru.itis.inf403.model.list;
 
 public class DoubleLinkedList<T> {
     private Node head;
@@ -97,6 +94,40 @@ public class DoubleLinkedList<T> {
                 head.prev = null;
             }
         }
+    }
+
+    public void removeIn(int index) {
+        if (index >= size || index < 0){
+            throw new IndexOutOfBoundsException();
+        }
+
+        Node current;
+
+        if (index < size / 2){
+            current = head;
+            for (int i = 0; i < index; i++){
+                current = current.next;
+            }
+        }else{
+            current = tail;
+            for (int i = size - 1; i > index; i--){
+                current = current.prev;
+            }
+        }
+
+        if (current.prev != null){
+            current.prev.next = current.next;
+        }else{
+            head = current.next;
+        }
+
+        if (current.next != null){
+            current.next.prev = current.prev;
+        }else{
+            tail = current.prev;
+        }
+
+        size--;
     }
 
     public void print(){

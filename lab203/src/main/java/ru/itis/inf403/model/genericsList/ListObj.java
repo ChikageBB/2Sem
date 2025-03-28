@@ -1,4 +1,4 @@
-package generics;
+package ru.itis.inf403.model.genericsList;
 
 public interface ListObj<T> {
 
@@ -19,7 +19,10 @@ public interface ListObj<T> {
      * сортирует структуру на месте
      *
      */
-    //void sort(boolean flag);
 
+    void swap(int i, int j);
 
+    void print();
+
+    boolean contains(T elem);
 }

@@ -1,16 +1,19 @@
-package ru.itis.inf403.set403.Set;
+package ru.itis.inf403.model.list;
 
 
-import java.util.Iterator;
+public class ListExample<T> implements ListObj<T> {
 
-public class ListExample<T> implements ListObj<T> , Iterable<T> {
-
-    private int CAPACITY = 16;
+    private int CAPACITY = 15;
     private Object[] arr;
     private int size;
 
 
     public ListExample(){
+        arr = new Object[CAPACITY];
+        this.size = 0;
+    }
+
+    public ListExample(int CAPACITY){
         arr = new Object[CAPACITY];
         this.size = 0;
     }
@@ -39,62 +42,22 @@ public class ListExample<T> implements ListObj<T> , Iterable<T> {
             throw new IndexOutOfBoundsException();
         }
 
-        Object[] newArr = new Object[CAPACITY];
-
-        for (int i = 0; i < position; i++){
-            newArr[i] = arr[i];
-        }
-
-        for (int i = position ; i < position - 1; i++){
-            newArr[i] = arr[i + 1];
-        }
-
-        --size;
         T temp = (T)arr[position];
-        arr = newArr;
-        return temp;
 
-    }
-
-
-    public boolean remove(T elem){
-        Object[] newArr = new Object[CAPACITY];
-
-        int index = -1;
-
-        for (int i = 0; i < size; i++){
-            if (arr[i].equals(elem)){
-                index = i;
-                break;
-            }
-        }
-
-        if (index == -1){
-            return false;
-        }
-
-        for (int i = index; i < size - 1; i++){
+        for (int i = position; i < size - 1; i++){
             arr[i] = arr[i + 1];
         }
 
         arr[size - 1] = null;
-        --size;
-        return true;
-    }
+        size--;
 
-    public boolean contains(T elem){
-        for (int i = 0; i < size; i++){
-            if (arr[i].equals(elem)){
-                return true;
-            }
-        }
-        return false;
+        return temp;
     }
 
     @Override
     public void add(T element) {
 
-        if (size == arr.length){
+        if (size >= arr.length){
             grow();
         }
 
@@ -126,7 +89,8 @@ public class ListExample<T> implements ListObj<T> , Iterable<T> {
     }
 
     private void grow(){
-        Object[] temp = new Object[(int)(CAPACITY * 1.5)];
+        int newCapacity = (int)(arr.length * 1.5);
+        Object[] temp = new Object[newCapacity];
         for (int i = 0; i < size; i++){
             temp[i] = arr[i];
         }
@@ -177,26 +141,5 @@ public class ListExample<T> implements ListObj<T> , Iterable<T> {
         stringBuilder.append(arr[size - 1] + " ]");
 
         System.out.println(stringBuilder);
-    }
-
-    public Iterator<T> iterator(){
-        return new ListIterator();
-    }
-
-
-    private class ListIterator implements Iterator<T> {
-        private int index = 0;
-
-        @Override
-        public boolean hasNext(){
-            return index < size;
-        }
-
-        @Override
-        public T next(){
-            return (T)arr[index++];
-        }
-
-
     }
 }
