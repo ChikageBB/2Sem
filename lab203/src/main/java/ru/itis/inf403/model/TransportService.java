@@ -4,32 +4,33 @@ import ru.itis.inf403.model.genericsList.*;
 import ru.itis.inf403.model.Set.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class TransportService {
 
     private File fileName;
 
-    public TransportService(String fileName){
+    public TransportService(String fileName) {
         this.fileName = new File(fileName);
     }
 
-    public ListObj<Transport> readAll() throws FileNotFoundException{
+    public ListObj<Transport> readAll() throws FileNotFoundException {
         try {
 
             Scanner sc = new Scanner(fileName);
             ListObj<Transport> result = new ListExample<>();
 
-            if (sc.hasNextLine()){
+            if (sc.hasNextLine()) {
                 sc.nextLine();
             }
 
-            while (sc.hasNextLine()){
+            while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 String[] str = line.split(";");
 
                 result.add(
-                        switch (str[0]){
+                        switch (str[0]) {
                             case "bus" -> new Bus(str[1], str[2], str[3], str[4]);
                             case "tram" -> new Tram(str[1], str[2], str[3], str[4]);
                             case "trolleybus" -> new Trolleybus(str[1], str[2], str[3], str[4]);
@@ -39,20 +40,20 @@ public class TransportService {
             }
             sc.close();
             return result;
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         return null;
     }
 
 
-    public ListObj<Bus> readAllBus() throws FileNotFoundException{
+    public ListObj<Bus> readAllBus() throws FileNotFoundException {
         Scanner sc = new Scanner(fileName);
         ListObj<Bus> result = new ListExample<>();
-        while (sc.hasNextLine()){
+        while (sc.hasNextLine()) {
             String line = sc.nextLine();
             String[] str = line.split(";");
-            if (str[0].equals("bus")){
+            if (str[0].equals("bus")) {
                 result.add(new Bus(str[1], str[2], str[3], str[4]));
             }
         }
@@ -61,13 +62,13 @@ public class TransportService {
         return result;
     }
 
-     public ListObj<Trolleybus> readAllTrolleybus() throws FileNotFoundException{
+    public ListObj<Trolleybus> readAllTrolleybus() throws FileNotFoundException {
         Scanner sc = new Scanner(fileName);
         ListObj<Trolleybus> result = new ListExample<>();
-        while (sc.hasNextLine()){
+        while (sc.hasNextLine()) {
             String line = sc.nextLine();
             String[] str = line.split(";");
-            if (str[0].equals("trolleybus")){
+            if (str[0].equals("trolleybus")) {
                 result.add(new Trolleybus(str[1], str[2], str[3], str[4]));
             }
         }
@@ -76,13 +77,13 @@ public class TransportService {
         return result;
     }
 
-     public ListObj<Tram> readAllTram() throws FileNotFoundException{
+    public ListObj<Tram> readAllTram() throws FileNotFoundException {
         Scanner sc = new Scanner(fileName);
         ListObj<Tram> result = new ListExample<>();
-        while (sc.hasNextLine()){
+        while (sc.hasNextLine()) {
             String line = sc.nextLine();
             String[] str = line.split(";");
-            if (str[0].equals("tram")){
+            if (str[0].equals("tram")) {
                 result.add(new Tram(str[1], str[2], str[3], str[4]));
             }
         }
@@ -90,20 +91,20 @@ public class TransportService {
         return result;
     }
 
-    private ListObj<Transport> sortred() throws FileNotFoundException{
+    private ListObj<Transport> sortred() throws FileNotFoundException {
         ListObj<Transport> list = readAll();
 
-        if (list == null || list.size() == 0){
+        if (list == null || list.size() == 0) {
             return list;
         }
 
 
-        for (int i = 0; i < list.size() - 1; i++){
-            for (int j = i + 1; j < list.size(); j++ ){
+        for (int i = 0; i < list.size() - 1; i++) {
+            for (int j = i + 1; j < list.size(); j++) {
                 int num1 = Integer.parseInt(list.get(i).routeNumber);
                 int num2 = Integer.parseInt(list.get(j).routeNumber);
 
-                if (num1 > num2){
+                if (num1 > num2) {
                     list.swap(i, j);
                 }
             }
@@ -111,40 +112,40 @@ public class TransportService {
         return list;
     }
 
-    public void printWorkTimeBegin() throws FileNotFoundException{
+    public void printWorkTimeBegin() throws FileNotFoundException {
         ListObj<Transport> list = sortred();
 
-        if (list == null || list.size() == 0){
+        if (list == null || list.size() == 0) {
             System.out.println("Ошибка");
             return;
         }
 
-        for (int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             Transport t = list.get(i);
             System.out.println("Номер: " + t.routeNumber + " | Время начала : " + t.workTimeBegin);
         }
     }
 
-    public void printWorkTime() throws FileNotFoundException{
+    public void printWorkTime() throws FileNotFoundException {
         ListObj<Transport> list = sortred();
 
-        if (list == null || list.size() == 0){
+        if (list == null || list.size() == 0) {
             System.out.println("Ошибка");
             return;
         }
 
-        for (int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             Transport t = list.get(i);
-            System.out.println("Номер: " + t.routeNumber + " | Время начала : " + t.workTimeBegin + " | Время окончания : " + t.workTimeEnd );
+            System.out.println("Номер: " + t.routeNumber + " | Время начала : " + t.workTimeBegin + " | Время окончания : " + t.workTimeEnd);
         }
     }
 
-    public void printUniqRouteNumber() throws FileNotFoundException{
+    public void printUniqRouteNumber() throws FileNotFoundException {
 
         ListObj<Transport> list = readAll();
         ISet<String> set = new SetExample<>();
 
-        for (int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             set.add(list.get(i).getRouteNumber());
         }
 
@@ -154,11 +155,11 @@ public class TransportService {
     }
 
 
-    public void printUniqTransport() throws FileNotFoundException{
+    public void printUniqTransport() throws FileNotFoundException {
         ListObj<Transport> list = readAll();
         ISet<String> set = new SetExample<>();
 
-        for (int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             set.add(list.get(i).getNumber());
         }
 
@@ -168,10 +169,10 @@ public class TransportService {
 
     }
 
-    public void printCntTransp() throws FileNotFoundException{
+    public void printCntTransp() throws FileNotFoundException {
         ListObj<Transport> list = readAll();
 
-        if (list == null || list.size() == 0){
+        if (list == null || list.size() == 0) {
             System.out.println("Список пуст");
             return;
         }
@@ -179,20 +180,20 @@ public class TransportService {
         ISet<Transport> processedTransport = new SetExample<>();
         ListObj<RouteCount> routeCounts = new ListExample<>();
 
-        for (int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             Transport t = list.get(i);
 
-            if (processedTransport.contains(t)){
+            if (processedTransport.contains(t)) {
                 continue;
             }
 
             int count = 0;
             String currentRoute = t.getRouteNumber();
 
-            for (int j = 0; j < list.size(); j++){
+            for (int j = 0; j < list.size(); j++) {
                 Transport other = list.get(j);
 
-                if (currentRoute.equals(other.getRouteNumber())){
+                if (currentRoute.equals(other.getRouteNumber())) {
                     count++;
                     processedTransport.add(other);
                 }
@@ -200,20 +201,30 @@ public class TransportService {
             routeCounts.add(new RouteCount(currentRoute, count));
         }
 
-        for (int i = 0; i < routeCounts.size(); i++){
+        for (int i = 0; i < routeCounts.size(); i++) {
             RouteCount rc = routeCounts.get(i);
             System.out.println("Маршрут " + rc.routeNumber + ": " + rc.count + " шт.");
         }
     }
 
-    private static class RouteCount{
+    public <T extends Transport> void printParkNumber(ListObj<T> list){
+        list.sort(new Comparator<T>() {
+            @Override
+            public int compare(T o1, T o2) {
+                return Integer.parseInt(o1.getNumber()) - Integer.parseInt(o2.getNumber());
+            }
+        });
+
+        list.print();
+    }
+
+    private static class RouteCount {
         String routeNumber;
         int count;
 
-        RouteCount(String routeNumber, int count){
+        RouteCount(String routeNumber, int count) {
             this.routeNumber = routeNumber;
             this.count = count;
         }
     }
-
 }

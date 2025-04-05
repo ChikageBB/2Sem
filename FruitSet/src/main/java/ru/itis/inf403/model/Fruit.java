@@ -23,7 +23,9 @@ public class Fruit {
         if (obj.getClass().equals(this.getClass())) return false;
         if (this == obj) return true;
 
-        return
+
+        return this.name.equals(((Fruit)obj).name);
+
     }
 
     @Override

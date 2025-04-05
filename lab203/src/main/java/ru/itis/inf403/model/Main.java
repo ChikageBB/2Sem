@@ -38,5 +38,8 @@ public class Main {
 
         transportService.printCntTransp();
 
+        System.out.println("-----------------------");
+
+        transportService.printParkNumber(list);
     }
 }

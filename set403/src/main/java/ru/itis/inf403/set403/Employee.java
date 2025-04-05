@@ -1,4 +1,4 @@
-package ru.itis.inf403.set403.Set;
+package ru.itis.inf403.set403;
 
 import java.util.Objects;
 

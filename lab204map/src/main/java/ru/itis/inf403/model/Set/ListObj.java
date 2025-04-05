@@ -1,5 +1,4 @@
-package ru.itis.inf403.model.genericsList;
-import java.util.*;
+package ru.itis.inf403.model.Set;
 
 public interface ListObj<T> {
 
@@ -20,12 +19,7 @@ public interface ListObj<T> {
      * сортирует структуру на месте
      *
      */
-
-    void swap(int i, int j);
-
+    //void sort(boolean flag);
     void print();
-
     boolean contains(T elem);
-
-    void sort(Comparator<T> comparator);
 }

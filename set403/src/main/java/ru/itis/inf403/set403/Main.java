@@ -1,7 +1,5 @@
 package ru.itis.inf403.set403;
 
-import ru.itis.inf403.set403.Set.Employee;
-import ru.itis.inf403.set403.Set.ListExample;
 import ru.itis.inf403.set403.Set.SetExample;
 
 

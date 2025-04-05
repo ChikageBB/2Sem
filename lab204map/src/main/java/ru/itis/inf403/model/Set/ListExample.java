@@ -1,10 +1,11 @@
-package ru.itis.inf403.model.genericsList;
-import java.util.*;
+package ru.itis.inf403.model.Set;
+
+
 
 
 import java.util.Iterator;
 
-public class ListExample<T> implements ListObj<T> , Iterable<T> {
+public class ListExample<T> implements ListObj<T>, Iterable<T> {
 
     private int CAPACITY = 16;
     private Object[] arr;
@@ -127,25 +128,47 @@ public class ListExample<T> implements ListObj<T> , Iterable<T> {
     }
 
     private void grow(){
-        int newCapacity = (int)(arr.length * 1.5);
-        Object[] temp = new Object[newCapacity];
+        Object[] temp = new Object[(int)(CAPACITY * 1.5)];
         for (int i = 0; i < size; i++){
             temp[i] = arr[i];
         }
         arr = temp;
     }
 
+//    @Override
+//    public void sort(boolean flag) {
+//        if (flag) {
+//            for (int i = 0; i < size - 1; i++) {
+//                for (int j = i + 1; j < size; j++) {
+//                    if (arr[i] > arr[j]) {
+//                        Integer temp = arr[i];
+//                        arr[i] = arr[j];
+//                        arr[j] = temp;
+//                    }
+//                }
+//            }
+//        } else {
+//            for (int i = 0; i < size - 1; i++) {
+//                for (int j = i + 1; j < size; j++) {
+//                    if (arr[i] < arr[j]) {
+//                        Integer temp = arr[i];
+//                        arr[i] = arr[j];
+//                        arr[j] = temp;
+//                    }
+//                }
+//            }
+//        }
+//    }
 
-    public void swap(int i, int j){
-        if (i < 0 || j < 0 || i >= arr.length || j >= arr.length){
-            throw new IndexOutOfBoundsException();
-        }
 
-        Object temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
-
+//    public void print(){
+//        System.out.print("[");
+//        for (int i = 0; i < size - 1; i++){
+//            System.out.print(arr[i] + ", ");
+//        }
+//        System.out.print(arr[size - 1]);
+//        System.out.println("]");
+//    }
 
     public void print(){
         StringBuilder stringBuilder = new StringBuilder();
@@ -176,15 +199,6 @@ public class ListExample<T> implements ListObj<T> , Iterable<T> {
             return (T)arr[index++];
         }
 
-    }
 
-    public void sort(Comparator<T> comparator){
-        for (int i = 0; i < size - 1 ; i++){
-            for (int j = i + 1; j < size; j++){
-                if (comparator.compare((T)arr[i], (T)arr[j]) > 0){
-                    swap(i, j);
-                }
-            }
-        }
     }
 }

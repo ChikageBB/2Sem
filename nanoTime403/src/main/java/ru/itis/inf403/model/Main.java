@@ -28,7 +28,7 @@ public class Main {
             list.remove(i);
         }
 
-        System.out.println("Intermediate for ArrayList (add elem): " + (double)(System.nanoTime() - removeStart) / countNanoSec + " seconds");
+        System.out.println("Intermediate for ArrayList (remove elem): " + (double)(System.nanoTime() - removeStart) / countNanoSec + " seconds");
 
 
         System.out.println("Result for ArrayList: " + (double)(System.nanoTime() - start) / countNanoSec + " seconds");
