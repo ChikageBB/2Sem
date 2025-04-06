@@ -5,6 +5,8 @@ import ru.itis.inf403.model.Set.ListExample;
 import ru.itis.inf403.model.Set.ListObj;
 import ru.itis.inf403.model.Set.SetExample;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class MapImpl<K, V> implements Map403<K, V>{
@@ -168,7 +170,9 @@ public class MapImpl<K, V> implements Map403<K, V>{
 
     @Override
     public void clear() {
-
+        for (int i = 0; i < arr.length; i++){
+            arr[i] = null;
+        }
     }
 
 
@@ -210,4 +214,41 @@ public class MapImpl<K, V> implements Map403<K, V>{
             this.value = new EntryImpl<>(key, value);
         }
     }
+
+    public Iterator<Entry<K, V>> iterator(){
+        return new MapIterator();
+    }
+
+    private class MapIterator implements Iterator<Entry<K, V>>{
+        private int currentIndex = 0;
+        private Node<K, V> currentNode = null;
+        private int returnedCount = 0;
+
+
+        @Override
+        public boolean hasNext() {
+            return returnedCount < size;
+        }
+
+        @Override
+        public Entry<K, V> next() {
+            if (!hasNext()){
+                throw new NoSuchElementException();
+            }
+
+            while (currentNode == null){
+                if (currentIndex >= arr.length){
+                    throw new NoSuchElementException();
+                }
+
+                currentNode = arr[currentIndex++];
+            }
+
+            Entry<K, V> result = currentNode.value;
+            currentNode = currentNode.next;
+            returnedCount++;
+            return result;
+        }
+    }
 }
+

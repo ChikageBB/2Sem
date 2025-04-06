@@ -3,7 +3,7 @@ import ru.itis.inf403.model.Set.*;
 
 import java.util.Set;
 
-public interface Map403<K, V> {
+public interface Map403<K, V> extends Iterable<Map403.Entry<K, V>> {
     void put(K key, V value);
 
     V get(K key);
@@ -30,5 +30,6 @@ public interface Map403<K, V> {
         K getKey();
         V getValue();
     }
+
 
 }

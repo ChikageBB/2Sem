@@ -11,18 +11,13 @@ public class Main {
         map.put(1, "Привет");
         map.put(2, "Привет");
 
-        System.out.println(map.size());
 
-        System.out.println(map.get(1));
+        for (Map403.Entry<Integer, String> item : map){
+            System.out.println(item.getKey() + " : " + item.getValue());
+        }
 
-        System.out.println(map.containsKey(15));
+        map.clear();
 
-        ListObj<String> list = map.values();
-        list.print();
 
-        ISet<Integer> set = map.keySet();
-        set.print();
-
-        System.out.println(map.remove(2));
     }
 }
