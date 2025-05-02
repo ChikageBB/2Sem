@@ -7,7 +7,7 @@ import ru.itis.inf403.model.Set.SetExample;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.function.Function;
 
 public class MapImpl<K, V> implements Map403<K, V>{
 
@@ -154,7 +154,7 @@ public class MapImpl<K, V> implements Map403<K, V>{
     }
 
     private void reHash(){
-        if (size >= arr.length * 0.75){
+        if (size == arr.length){
             Node<K, V>[] oldArr = arr;
             arr = new Node[oldArr.length * 2];
             size = 0;
@@ -175,8 +175,18 @@ public class MapImpl<K, V> implements Map403<K, V>{
         }
     }
 
+    @Override
+    public <R> ListObj<R> map(Function<V, R> function) {
+        ListObj<R> res = new ListExample<>();
 
-     class EntryImpl<K, V> implements Entry<K, V>{
+        for (V elem: values()){
+            res.add((R)(function.apply(elem)));
+        }
+
+        return res;
+    }
+
+    class EntryImpl<K, V> implements Entry<K, V>{
         private K key;
         private V value;
 
@@ -215,6 +225,7 @@ public class MapImpl<K, V> implements Map403<K, V>{
         }
     }
 
+    @Override
     public Iterator<Entry<K, V>> iterator(){
         return new MapIterator();
     }

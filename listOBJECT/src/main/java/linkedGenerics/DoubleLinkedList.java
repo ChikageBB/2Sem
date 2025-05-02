@@ -1,8 +1,5 @@
 package linkedGenerics;
 
-import java.util.Set;
-import java.util.TreeSet;
-
 public class DoubleLinkedList<T> {
     private Node head;
     private Node tail;
