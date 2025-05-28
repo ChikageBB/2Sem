@@ -1,0 +1,22 @@
+{
+  "userId": 9876,
+  "username": "random_user42",
+  "isActive": true,
+  "profile": {
+    "firstName": "Alice",
+    "lastName": "Smith",
+    "age": 29,
+    "email": "alice.smith@example.com"
+  },
+  "preferences": {
+    "theme": "dark",
+    "notifications": {
+      "email": true,
+      "sms": false
+    },
+    "languages": ["en", "fr", "de"]
+  },
+  "lastLogin": "2025-05-21T09:15:00Z",
+  "tags": ["beta", "tester", "premium"],
+  "metadata": null
+}

@@ -13,7 +13,11 @@ import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
+// ToDo 1. Вывести список гостиниц и кол-во бронирований женщинами
+// ToDo 2. Вывести список гостиниц и кол-во бронирований мужчинами
+// ToDo 3. Вывести процент бронирований из Самарской области
+// ToDo 4. Вывести процент бронирований людьми в возрасте от 40 до 45 лет
+// ToDo 5. Вывести список городов и кол-во бронирований по ним (город ~ г ...)
 // ToDo 6. Сформировать Map ключ - гостиница, значение - список городов
 // ToDo 7. Вывести процент уникальных людей (необходимо описать эквивалентность по полу, дате рождения)
 
@@ -25,9 +29,10 @@ public class MainBooking {
 
         Bookings bookings = mapper.readValue(new File("D:\\itis\\javaProject\\2Sem\\lab2_07_streamapi\\src\\main\\java\\ru\\itis\\inf403\\streamapi\\model\\booking\\bookings.json"),  Bookings.class);
 
-        printUniqPersonPercent(bookings);
+        printCountCity(bookings);
     }
 
+    //Вывести количество
     public static void printCount(Bookings bookings){
         System.out.println(
         bookings
@@ -37,16 +42,8 @@ public class MainBooking {
         );
     }
 
-    public static void printCountFemale(Bookings bookings){
-        System.out.println(
-        bookings
-                .getBookings()
-                .stream()
-                .filter(p -> p.getPerson().getGender() != null)
-                .filter(p -> p.getPerson().getGender().equals("Female"))
-                .count()
-        );
-    }
+
+    //Вывести кол-во гостей из москвы
     public static void printCountGuestFromMoscow(Bookings bookings){
         System.out.println(
         bookings

@@ -21,6 +21,11 @@
         <module>lab2_07_streamapi</module>
         <module>lab2_08_IO</module>
         <module>lab2_09_ds</module>
+        <module>lab2_10_test</module>
+        <module>lab2_11_seria</module>
+        <module>lab2_12_db</module>
+        <module>lab2_13_parallelThread</module>
+        <module>lab2_13_parall</module>
     </modules>
 
     <dependencies>
